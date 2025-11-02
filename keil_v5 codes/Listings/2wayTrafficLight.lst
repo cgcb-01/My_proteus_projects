@@ -1,0 +1,61 @@
+C51 COMPILER V9.60.7.0   2WAYTRAFFICLIGHT                                                  08/28/2025 02:02:28 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE 2WAYTRAFFICLIGHT
+OBJECT MODULE PLACED IN .\Objects\2wayTrafficLight.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 2wayTrafficLight.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\L
+                    -istings\2wayTrafficLight.lst) TABS(2) OBJECT(.\Objects\2wayTrafficLight.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          sbit red1    = P2^0;
+   4          sbit yellow1 = P2^1;
+   5          sbit green1  = P2^2;
+   6          sbit red2    = P2^3;
+   7          sbit yellow2 = P2^4;
+   8          sbit green2  = P2^5;
+   9          void delay50ms() {
+  10   1          unsigned int i;
+  11   1      
+  12   1          TMOD = 0x01;    
+  13   1          for(i = 0; i < 200; i++) {  
+  14   2              TH0 = 0x4C;   
+  15   2              TL0 = 0x00;
+  16   2              TR0 = 1;    
+  17   2              while(TF0 == 0); 
+  18   2              TR0 = 0;     
+  19   2              TF0 = 0;     
+  20   2          }
+  21   1      }
+  22          
+  23          void main() {
+  24   1          red1 = 0; yellow1 = 0; green1 = 0;red2 = 0; yellow2 = 0; green2 = 0;  
+  25   1      
+  26   1          while(1) {
+  27   2              red1 = 1; yellow1 = 0; green1 = 0;red2 = 0; yellow2 = 0; green2 = 1;
+  28   2              delay50ms();  
+  29   2      
+  30   2              red1 = 0; yellow1 = 0; green1 = 1;red2 = 1; yellow2 = 0; green2 = 0;   
+  31   2              delay50ms();  
+  32   2      
+  33   2              red1 = 0; yellow1 = 1; green1 = 0;red2 = 0; yellow2 = 1; green2 = 0;   
+  34   2              delay50ms(); 
+  35   2          }
+  36   1      }
+  37          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     92    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

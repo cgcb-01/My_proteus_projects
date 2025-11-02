@@ -1,0 +1,171 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    09/03/2025  23:19:41  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Lcd_interfacing.obj TO .\Objects\LCD_Interfacing PRINT (.\Listings\LCD_Interfacing
+>> .m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Lcd_interfacing.obj (LCD_INTERFACING)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\LCD_Interfacing (LCD_INTERFACING)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     002CH     UNIT         ?PR?_LCD_STRING?LCD_INTERFACING
+            CODE    082CH     0020H     UNIT         ?PR?_DELAY?LCD_INTERFACING
+            CODE    084CH     0019H     UNIT         ?C?LIB_CODE
+            CODE    0865H     0014H     UNIT         ?PR?LCD_INIT?LCD_INTERFACING
+            CODE    0879H     0010H     UNIT         ?PR?_LCD_CMD?LCD_INTERFACING
+            CODE    0889H     0010H     UNIT         ?PR?_LCD_DATA?LCD_INTERFACING
+            CODE    0899H     000EH     UNIT         ?PR?MAIN?LCD_INTERFACING
+            CODE    08A7H     000CH     UNIT         ?PR?LCD_PULSE?LCD_INTERFACING
+            CODE    08B3H     000CH     UNIT         ?CO?LCD_INTERFACING
+            CODE    08BFH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\LCD_Interfacing (LCD_INTERFACING)
+
+
+SEGMENT                                   DATA_GROUP 
+  +--> CALLED SEGMENT                   START    LENGTH
+-------------------------------------------------------
+?C_C51STARTUP                           -----    -----
+  +--> ?PR?MAIN?LCD_INTERFACING
+
+?PR?MAIN?LCD_INTERFACING                -----    -----
+  +--> ?PR?LCD_INIT?LCD_INTERFACING
+  +--> ?CO?LCD_INTERFACING
+  +--> ?PR?_LCD_STRING?LCD_INTERFACING
+
+?PR?LCD_INIT?LCD_INTERFACING            -----    -----
+  +--> ?PR?_LCD_CMD?LCD_INTERFACING
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  09/03/2025  23:19:41  PAGE 2
+
+
+?PR?_LCD_CMD?LCD_INTERFACING            -----    -----
+  +--> ?PR?LCD_PULSE?LCD_INTERFACING
+  +--> ?PR?_DELAY?LCD_INTERFACING
+
+?PR?LCD_PULSE?LCD_INTERFACING           -----    -----
+  +--> ?PR?_DELAY?LCD_INTERFACING
+
+?PR?_LCD_STRING?LCD_INTERFACING         0008H    0003H
+  +--> ?PR?_LCD_DATA?LCD_INTERFACING
+  +--> ?PR?_DELAY?LCD_INTERFACING
+
+?PR?_LCD_DATA?LCD_INTERFACING           -----    -----
+  +--> ?PR?LCD_PULSE?LCD_INTERFACING
+  +--> ?PR?_DELAY?LCD_INTERFACING
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\LCD_Interfacing (LCD_INTERFACING)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        LCD_INTERFACING
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:082CH         PUBLIC        _delay
+  B:00A0H.0       PUBLIC        RS
+  C:0899H         PUBLIC        main
+  B:00A0H.1       PUBLIC        RW
+  C:0800H         PUBLIC        _lcd_string
+  C:0889H         PUBLIC        _lcd_data
+  C:08A7H         PUBLIC        lcd_pulse
+  B:00A0H.2       PUBLIC        E
+  C:0879H         PUBLIC        _lcd_cmd
+  C:0865H         PUBLIC        lcd_init
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:082CH         LINE#         16
+  C:082CH         LINE#         18
+  C:0836H         LINE#         19
+  C:084BH         LINE#         20
+  -------         ENDPROC       _DELAY
+  -------         PROC          LCD_PULSE
+  C:08A7H         LINE#         22
+  C:08A7H         LINE#         23
+  C:08A9H         LINE#         24
+  C:08B0H         LINE#         25
+  C:08B2H         LINE#         26
+  -------         ENDPROC       LCD_PULSE
+  -------         PROC          _LCD_CMD
+  D:0007H         SYMBOL        cmd
+  C:0879H         LINE#         28
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  09/03/2025  23:19:41  PAGE 3
+
+
+  C:0879H         LINE#         29
+  C:087DH         LINE#         30
+  C:087FH         LINE#         31
+  C:0882H         LINE#         32
+  -------         ENDPROC       _LCD_CMD
+  -------         PROC          _LCD_DATA
+  D:0007H         SYMBOL        dat
+  C:0889H         LINE#         35
+  C:0889H         LINE#         36
+  C:088DH         LINE#         37
+  C:088FH         LINE#         38
+  C:0892H         LINE#         39
+  -------         ENDPROC       _LCD_DATA
+  -------         PROC          LCD_INIT
+  C:0865H         LINE#         42
+  C:0865H         LINE#         43
+  C:086AH         LINE#         44
+  C:086FH         LINE#         45
+  C:0874H         LINE#         46
+  -------         ENDPROC       LCD_INIT
+  -------         PROC          _LCD_STRING
+  D:0008H         SYMBOL        str
+  C:0800H         LINE#         49
+  C:0806H         LINE#         50
+  C:0811H         LINE#         51
+  C:0822H         LINE#         52
+  C:0829H         LINE#         53
+  C:082BH         LINE#         54
+  -------         ENDPROC       _LCD_STRING
+  -------         PROC          MAIN
+  C:0899H         LINE#         56
+  C:0899H         LINE#         57
+  C:089CH         LINE#         58
+  C:08A5H         LINE#         59
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LCD_INTERFACING
+
+  -------         MODULE        ?C?CLDPTR
+  C:084CH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00A6H BYTE ( 8%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=206
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

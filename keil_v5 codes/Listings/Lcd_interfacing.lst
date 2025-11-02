@@ -1,0 +1,86 @@
+C51 COMPILER V9.60.7.0   LCD_INTERFACING                                                   09/03/2025 23:19:41 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LCD_INTERFACING
+OBJECT MODULE PLACED IN .\Objects\Lcd_interfacing.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Lcd_interfacing.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Li
+                    -stings\Lcd_interfacing.lst) TABS(2) OBJECT(.\Objects\Lcd_interfacing.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          sbit RS = P2^0;
+   4          sbit RW = P2^1;
+   5          sbit E  = P2^2;
+   6          
+   7          sbit d0 = P3^0;
+   8          sbit d1 = P3^1;
+   9          sbit d2 = P3^2;
+  10          sbit d3 = P3^3;
+  11          sbit d4 = P3^4;
+  12          sbit d5 = P3^5;
+  13          sbit d6 = P3^6;
+  14          sbit d7 = P3^7;
+  15          
+  16          void delay(unsigned int t) {
+  17   1          unsigned int i, j;
+  18   1          for(i = 0; i < t; i++)
+  19   1              for(j = 0; j < 1275; j++);
+  20   1      }
+  21          
+  22          void lcd_pulse() {
+  23   1          E = 1;
+  24   1          delay(1);
+  25   1          E = 0;
+  26   1      }
+  27          
+  28          void lcd_cmd(unsigned char cmd) {
+  29   1          RS = 0; RW = 0;
+  30   1          P3 = cmd;   
+  31   1          lcd_pulse();
+  32   1          delay(2);
+  33   1      }
+  34          
+  35          void lcd_data(unsigned char dat) {
+  36   1          RS = 1; RW = 0;
+  37   1          P3 = dat;    // Send data to P3 (d0-d7)
+  38   1          lcd_pulse();
+  39   1          delay(2);
+  40   1      }
+  41          
+  42          void lcd_init() {
+  43   1          lcd_cmd(0x38); // 8-bit, 2 line
+  44   1          lcd_cmd(0x0C); // Display ON, Cursor OFF
+  45   1          lcd_cmd(0x06); // Entry mode
+  46   1          lcd_cmd(0x01); // Clear screen
+  47   1      }
+  48          
+  49          void lcd_string(char *str) {
+  50   1          while(*str) {
+  51   2              lcd_data(*str++);
+  52   2              delay(50);  
+  53   2          }
+  54   1      }
+C51 COMPILER V9.60.7.0   LCD_INTERFACING                                                   09/03/2025 23:19:41 PAGE 2   
+
+  55          
+  56          void main() {
+  57   1          lcd_init();
+  58   1          lcd_string("HELLO WORLD");
+  59   1          while(1);
+  60   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    154    ----
+   CONSTANT SIZE    =     12    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+".\Objects\2wayTrafficLight.obj",
+".\Objects\3wayTraffic.obj" 
+TO ".\Objects\2wayTrafficLight" 
+PRINT(".\Listings\2wayTrafficLight.m51")

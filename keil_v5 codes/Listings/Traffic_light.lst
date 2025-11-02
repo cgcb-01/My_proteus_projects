@@ -1,0 +1,60 @@
+C51 COMPILER V9.60.7.0   TRAFFIC_LIGHT                                                     08/28/2025 01:32:16 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TRAFFIC_LIGHT
+OBJECT MODULE PLACED IN .\Objects\Traffic_light.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Traffic_light.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\Traffic_light.lst) TABS(2) OBJECT(.\Objects\Traffic_light.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          sbit red    = P2^0;
+   4          sbit yellow = P2^1;
+   5          sbit green  = P2^2;
+   6          
+   7          // delay of ~50ms using Timer0
+   8          void delay50ms() {
+   9   1          unsigned int i;
+  10   1      
+  11   1          TMOD = 0x01;      // Timer0, Mode 1 (16-bit)
+  12   1          for(i = 0; i < 200; i++) {   // 200 * 50ms = 10s
+  13   2              TH0 = 0x4C;   // reload for 50ms
+  14   2              TL0 = 0x00;
+  15   2              TR0 = 1;      // start Timer0
+  16   2              while(TF0 == 0); // wait overflow
+  17   2              TR0 = 0;      // stop
+  18   2              TF0 = 0;      // clear overflow flag
+  19   2          }
+  20   1      }
+  21          
+  22          void main() {
+  23   1          red = 0; yellow = 0; green = 0;  
+  24   1      
+  25   1          while(1) {
+  26   2              red = 1; yellow = 0; green = 0;  
+  27   2              delay50ms();   // 10s
+  28   2      
+  29   2              red = 0; yellow = 1; green = 0;   
+  30   2              delay50ms();   // 10s
+  31   2      
+  32   2              red = 0; yellow = 0; green = 1;   
+  33   2              delay50ms();   // 10s
+  34   2          }
+  35   1      }
+  36          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     68    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
